@@ -35,7 +35,4 @@ mongoose
 //   console.log(`Server is running on port ${PORT}`);
 // });
 
-module.exports = {
-  app,
-  PORT,
-};
+module.exports = app;
