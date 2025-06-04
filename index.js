@@ -11,6 +11,10 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+
+// enable back end to read form data that sent from front end
+app.use(express.urlencoded({ extended: true }));
+
 app.use("/api/users/", users);
 
 // Catch-all for invalid routes
@@ -21,6 +25,12 @@ app.use((req, res) => {
   });
 });
 
+// Start Local server
+
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+
 // Connect to MongoDB
 mongoose
   .connect(DB, {
@@ -29,10 +39,5 @@ mongoose
   })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Failed to connect to MongoDB:", err));
-
-// Start server
-// app.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}`);
-// });
 
 module.exports = app;
